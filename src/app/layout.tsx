@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material";
 import theme from "@/theme";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import Script from "next/script";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,6 +27,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* <!-- Google tag (gtag.js) --> */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-QTW0W21LG9"
+        ></Script>
+        <Script id="gtag">
+          {` window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QTW0W21LG9');`}
+        </Script>
+      </head>
       <body className="bg-gray-300">
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
